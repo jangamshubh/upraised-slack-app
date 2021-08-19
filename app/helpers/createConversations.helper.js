@@ -15,10 +15,13 @@ const client = new WebClient(process.env.slack_api_key, {
     logLevel: LogLevel.DEBUG
 });
 
-// Arrays
+// Initiating Arrays
 let createdConversations = [];
 let airtableChannels = [];
 
+/*
+* Getting all Channel data from Airtable using API
+* */
 module.exports.getAirtableChannels = async function getAirtableChannel() {
     const records = await table.select({ fields: ["Slack Channel Name","Status"], filterByFormula: "{Status} = 'Active'"}).firstPage();
     records.forEach(function(record) {
@@ -27,7 +30,9 @@ module.exports.getAirtableChannels = async function getAirtableChannel() {
     return airtableChannels;
 }
 
-
+/*
+* Creates the Channel in the Database for further usage
+* */
 module.exports.createChannel = (data, res) => {
     Channels.create({
         name: data.name,
@@ -36,7 +41,9 @@ module.exports.createChannel = (data, res) => {
         .then(channel => { console.log("Data Saved Successfully!")})
         .catch(err => {});
 }
-
+/*
+* Get All the Conversations & The Data from Slack to ensure that later when are creating new channels, they don't get repeated
+*/
 module.exports.populateConversationStore = async function populateConversationStore() {
     try {
         const result = await client.conversations.list();
@@ -49,7 +56,9 @@ module.exports.populateConversationStore = async function populateConversationSt
     }
 }
 
-// Put conversations into the JavaScript object
+/*
+* Only take the name and push it into the array
+*/
 function saveConversations(conversationsArray) {
     conversationsArray.forEach(function(conversation){
         // Key conversation info on its unique ID
