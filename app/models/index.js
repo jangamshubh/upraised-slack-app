@@ -19,6 +19,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.channels = require("./channels.model.js")(sequelize, Sequelize);
+db.channels = require("./channels.model")(sequelize, Sequelize);
+db.messages = require("./messages.model")(sequelize, Sequelize);
 
 module.exports = db;
