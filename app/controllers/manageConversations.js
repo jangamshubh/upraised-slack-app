@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 // DB Import
-var db = require("./app/models")
+var db = require("../models")
 var channels = db.channels;
 
 // Airtable Import

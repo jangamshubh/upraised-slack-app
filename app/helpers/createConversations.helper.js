@@ -38,7 +38,7 @@ module.exports.createChannel = (data, res) => {
         name: data.name,
         slackId: data.slackId,
     })
-        .then(channel => { console.log("Data Saved Successfully!")})
+        .then(channel => { console.log("Channel Saved Successfully!")})
         .catch(err => {});
 }
 /*

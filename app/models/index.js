@@ -21,5 +21,8 @@ db.sequelize = sequelize;
 
 db.channels = require("./channels.model")(sequelize, Sequelize);
 db.messages = require("./messages.model")(sequelize, Sequelize);
+db.sent_messages = require("./sent-messages.model")(sequelize, Sequelize);
+db.messages.belongsToMany(db.channels, { through: db.sent_messages });
+db.channels.belongsToMany(db.messages, { through: db.sent_messages });
 
 module.exports = db;
