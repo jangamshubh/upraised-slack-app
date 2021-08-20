@@ -13,9 +13,9 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// db.sequelize.sync({ force: true }).then(() => {
-//     console.log("Drop and re-sync db.");
-// });
+db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+});
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
