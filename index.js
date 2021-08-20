@@ -33,17 +33,17 @@ cron.schedule('42 14 * * 5', function() {
     console.log("Channel Creation Successful - Monday")
 });
 // Monday Update Conversation
-cron.schedule('44 14 * * 1', function() {
+cron.schedule('44 14 * * 5', function() {
     manageConversations.getAllChannels();
     console.log("Channel Updation Successful - Monday")
 });
 // Monday Create Or Update Messages
-cron.schedule('46 14 * * 1', function() {
+cron.schedule('46 14 * * 5', function() {
     addMessagesToDatabase.getAllMessages();
     console.log("Updation or Creation of Messages - Monday")
 });
 // Monday Send Messages
-cron.schedule('50 14 * * 1', function() {
+cron.schedule('50 14 * * 5', function() {
     sendMessagesToSlack.PodcastMessages();
     console.log("Sending Messages Successful - Monday")
 });
